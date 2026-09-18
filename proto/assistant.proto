@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package assistant.v1;
+
+option go_package = "github.com/you/voice-assistant/internal/sidecar/proto;assistantpb";
+
+service MLService {
+  rpc Transcribe(TranscribeRequest) returns (TranscribeResponse);
+  rpc StreamTranscribe(stream AudioChunk) returns (stream PartialTranscript);
+  rpc Synthesize(SynthesizeRequest) returns (SynthesizeResponse);
+  rpc HealthCheck(HealthRequest) returns (HealthResponse);
+}
+
+message TranscribeRequest {
+  bytes audio = 1;
+  int32 sample_rate = 2;
+  string language = 3;
+}
+
+message TranscribeResponse {
+  string text = 1;
+  float confidence = 2;
+  string detected_language = 3;
+}
+
+message AudioChunk {
+  bytes data = 1;
+  int32 sample_rate = 2;
+}
+
+message PartialTranscript {
+  string text = 1;
+  bool is_final = 2;
+}
+
+message SynthesizeRequest {
+  string text = 1;
+  string voice = 2;
+}
+
+message SynthesizeResponse {
+  bytes audio = 1;
+  int32 sample_rate = 2;
+  string format = 3;
+}
+
+message HealthRequest {}
+
+message HealthResponse {
+  bool ok = 1;
+  string version = 2;
+  repeated string loaded_models = 3;
+}

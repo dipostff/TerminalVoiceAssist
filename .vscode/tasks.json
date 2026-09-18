@@ -1,0 +1,31 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "validate-voice-assistant",
+			"type": "shell",
+			"command": "cd /home/d1pff/TerminalVoiceAssist && python3 -m py_compile sidecar/server.py sidecar/stt_engine.py sidecar/tts_engine.py && go test ./...",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "validate-project",
+			"type": "shell",
+			"command": "cd /home/d1pff/TerminalVoiceAssist && python3 -m py_compile sidecar/server.py sidecar/stt_engine.py sidecar/tts_engine.py && go test ./...",
+			"isBackground": false,
+			"problemMatcher": [
+				"$go"
+			],
+			"group": "test"
+		},
+		{
+			"label": "validate-project",
+			"type": "shell",
+			"command": "cd /home/d1pff/TerminalVoiceAssist && python3 -m py_compile sidecar/server.py sidecar/stt_engine.py sidecar/tts_engine.py && go test ./...",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		}
+	]
+}
